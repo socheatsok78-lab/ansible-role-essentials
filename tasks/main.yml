@@ -1,7 +1,12 @@
 ---
-- name: Run the equivalent of "apt-get upgrade/update" as a separate step
-  ansible.builtin.apt:
-    upgrade: safe
+- name: Ensure that the package cache is updated
+  ansible.builtin.package:
+    update_cache: true
+    cache_valid_time: 3600
+  register: result
+  until: result is not failed
+  retries: 5
+  delay: 5
 
 - name: Ensure that the required packages are installed
   ansible.builtin.apt:
