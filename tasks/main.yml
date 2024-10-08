@@ -1,0 +1,12 @@
+---
+- name: Run the equivalent of "apt-get upgrade/update" as a separate step
+  ansible.builtin.apt:
+    upgrade: safe
+
+- name: Ensure that the required packages are installed
+  ansible.builtin.apt:
+    name:
+      - "ca-certificates"
+      - "unzip"
+    state: present
+    update_cache: true
