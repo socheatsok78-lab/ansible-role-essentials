@@ -2,7 +2,6 @@
 - name: Ensure that the package cache is updated
   ansible.builtin.package:
     update_cache: true
-    cache_valid_time: 3600
   register: result
   until: result is not failed
   retries: 5
