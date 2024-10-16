@@ -7,6 +7,9 @@
   retries: 5
   delay: 5
 
+- include_tasks: setup-CentOS.yml
+  when: ansible_distribution == 'CentOS'
+
 - name: Ensure that the required packages are installed
   ansible.builtin.package:
     name:
