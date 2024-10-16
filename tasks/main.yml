@@ -10,7 +10,7 @@
 - include_tasks: setup-CentOS.yml
   when: ansible_distribution == 'CentOS'
 
-- name: Ensure that the required packages are installed
+- name: Ensure that the essential packages are installed
   ansible.builtin.package:
     name:
       - "ca-certificates"
