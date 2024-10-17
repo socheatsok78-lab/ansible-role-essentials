@@ -2,15 +2,11 @@
 - name: Ensure that the package cache is updated
   ansible.builtin.package:
     update_cache: true
+    cache_valid_time: 3600
   register: result
   until: result is not failed
   retries: 5
   delay: 5
-
-- name: Ensure epel-release is installed
-  ansible.builtin.package:
-    name: epel-release
-    state: present
 
 - name: Ensure that the essential packages are installed
   ansible.builtin.package:
