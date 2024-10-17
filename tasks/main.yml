@@ -11,7 +11,7 @@
         - 'vars'
 
 - name: Ensure that the package cache is updated
-  ansible.builtin.package: {{ ansible_builtin_package }}
+  ansible.builtin.package: ansible_builtin_package
   register: result
   until: result is not failed
   retries: 5
