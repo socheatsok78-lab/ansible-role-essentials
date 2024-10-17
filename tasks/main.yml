@@ -1,7 +1,17 @@
 ---
+- name: Include OS-Specific variables
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - '{{ansible_distribution}}.yaml'
+        - '{{ansible_os_family}}.yaml'
+        - default.yaml
+      paths:
+        - 'vars'
+
 - name: Ensure that the package cache is updated
-  ansible.builtin.package:
-    update_cache: true
+  ansible.builtin.package: {{ ansible_builtin_package }}
   register: result
   until: result is not failed
   retries: 5
